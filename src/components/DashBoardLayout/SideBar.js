@@ -1,50 +1,48 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import home from '../../assets/home.svg'
-import trasactions from '../../assets/trasactions.svg'
-import contact from '../../assets/contact.svg'
-import finances from '../../assets/finances.svg'
+import home from "../../assets/home.svg";
+import trasactions from "../../assets/trasactions.svg";
+import contact from "../../assets/contact.svg";
+import finances from "../../assets/finances.svg";
 
 function Sidebar() {
-
- 
   return (
     <Container>
-        <h2>Bank App</h2>
+      <h2>Bank App</h2>
       <ListSection>
         <ul>
-            <li>
+          <li>
             <Link className="link" to={`/dashboard`}>
-            {" "}
-            <img src={home} alt="dash" />
-            <span>Home</span>
+              {" "}
+              <img src={home} alt="dash" />
+              <span>Home</span>
             </Link>
-            </li>
-          
-            <li>
-            <Link className="link" to={`/dashboard`}>
-            {" "}
-            <img src={finances} alt="dash" />
-            <span>Finances</span>
-            </Link>
-            </li>
+          </li>
 
-            <li>
+          <li>
             <Link className="link" to={`/dashboard`}>
-            {" "}
-            <img src={trasactions} alt="dash" />
-            <span>Trasactions</span>
+              {" "}
+              <img src={finances} alt="dash" />
+              <span>Finances</span>
             </Link>
-            </li>
+          </li>
 
-            <li>
+          <li>
             <Link className="link" to={`/dashboard`}>
-            {" "}
-            <img src={contact} alt="dash" />
-            <span>History</span>
+              {" "}
+              <img src={trasactions} alt="dash" />
+              <span>Trasactions</span>
             </Link>
-            </li>
+          </li>
+
+          <li>
+            <Link className="link" to={`/dashboard`}>
+              {" "}
+              <img src={contact} alt="dash" />
+              <span>History</span>
+            </Link>
+          </li>
         </ul>
       </ListSection>
     </Container>
@@ -58,9 +56,9 @@ const Container = styled.div`
   width: 230px;
   position: fixed;
   z-index: 2;
-  h2{
-    padding-left: 22px ;
-    color: #4F4BF5
+  h2 {
+    padding-left: 22px;
+    color: #4f4bf5;
   }
 `;
 
@@ -76,9 +74,9 @@ const ListSection = styled.div`
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: #817D7D;
-    span{
-        margin-left: 20px
+    color: #817d7d;
+    span {
+      margin-left: 20px;
     }
     &:hover {
       opacity: 1;

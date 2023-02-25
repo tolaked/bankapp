@@ -4,13 +4,11 @@ import Sidebar from "./SideBar";
 import Header from "./Header";
 
 function DashboardLayout({ children }) {
-
   return (
     <Div>
+      <Sidebar className="sec" />
 
-        <Sidebar className="sec"  />
-
-      <Header/>
+      <Header />
       <Main>{children}</Main>
     </Div>
   );
@@ -33,7 +31,7 @@ const Main = styled.main`
   width: calc(100% - 230px);
   padding: 30px;
   overflow-y: scroll;
- background: #fafaff;
+  background: #fafaff;
 
   @media (max-width: 500px) {
     width: 100%;

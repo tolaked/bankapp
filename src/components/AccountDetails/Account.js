@@ -5,9 +5,8 @@ import account from "../../assets/accountname.svg";
 const Account = () => {
   return (
     <div className="customer-account-details">
-     
       <div className="details">
-      <h4>Account Details</h4>
+        <h4>Account Details</h4>
         <div className="acc-detail">
           <img src={mention} alt="" />
           <div>
