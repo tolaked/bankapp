@@ -1,12 +1,12 @@
 import React from 'react'
-import DashboardLayout from '../DashboardLayout'
-import Overview from '../Overview'
+import DashboardLayout from '../DashBoardLayout/DashboardLayout'
+import MainContent from './MainContent'
 
 
 const Dashboard = () => {
   return (
     <DashboardLayout>
-        <Overview/>
+        <MainContent/>
     </DashboardLayout>
   )
 }
