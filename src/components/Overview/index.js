@@ -1,14 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import spent from "../../assets/spent.svg";
 import balance from "../../assets/Balance.svg";
 import "./overview.scss";
 
+import Modal from "../Modal/Modal";
+
 const Overview = () => {
+  const [modal, setModal] = useState(false);
+
+  const handleToggleModal = () => {
+    setModal(!modal);
+  };
+
   return (
     <div className="overview">
       <div className="overview-text">
         <h2>Overview</h2>
-        <button>Fund wallet</button>
+        <button onClick={handleToggleModal}>Fund wallet</button>
+
+        {modal && <Modal />}
       </div>
 
       <div className="account-balance">
