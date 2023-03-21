@@ -18,7 +18,7 @@ const Overview = () => {
         <h2>Overview</h2>
         <button onClick={handleToggleModal}>Fund wallet</button>
 
-        {modal && <Modal />}
+        {modal && <Modal onClick={handleToggleModal} />}
       </div>
 
       <div className="account-balance">

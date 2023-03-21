@@ -13,20 +13,19 @@ export const container = {
   alignItems: "center",
   padding: 40,
   width: "543px",
-  height: "721px",
   backgroundColor: "#ffffff",
-  margin: "auto",
+  margin: "0 auto",
   borderRadius: 6,
   boxShadow: "0px 0px 4px rgba(0, 0, 0.25)",
 };
 
 export const paragraph = {
-  marginTop: "-300px",
+  // marginTop: "-300px",
   textAlign: "center",
   fontStyle: "normal",
   fontWeight: 700,
   fontSize: 32,
-  lineHeight: 40,
+  // lineHeight: 40,
   color: "#000",
 };
 
@@ -37,18 +36,16 @@ export const detailscontainer = {
   alignItems: 'center',
   padding: '40px',
   width: '606px',
-  height: '559px',
   backgroundColor: '#fff',
   boxShadow: '0px 0px 4px rgba(0, 0, 0.25)',
-  margin: 'auto',
+  margin: '0 auto',
 };
 export const detailsParagraph = {
-  marginTop: "-600px",
+  // marginTop: "-600px",
   textAlign: "center",
   fontStyle: "normal",
   fontWeight: 700,
   fontSize: 32,
-  lineHeight: 40,
   color: "#000",
 };
 
@@ -62,14 +59,13 @@ export const input = {
   flexDirection: "column",
   justifyContent: "flex-start",
   gap: 13,
-  marginTop: "-500px",
+  // marginTop: "-500px",
 };
 
 export const inputTopic = {
   color: "#4f4bf5",
   fontStyle: "normal",
   fontWeight: 400,
-  lineHeight: "22px",
 };
 
 export const inputBox = {
@@ -165,7 +161,6 @@ export const footer = {
 export const footerPara = {
   fontSize: "16px",
   fontWeight: 500,
-  lineHeight: 22,
   color: "#5a5a5a",
 };
 export const login = {
@@ -175,8 +170,6 @@ export const login = {
 export const footerPara2 = {
   textAlign: "center",
   color: "#5a5a5a",
-  // width: "463px",
-  // height: "50px",
   fontSize: 14,
   fontWeight: 500,
 };
@@ -184,14 +177,13 @@ export const footerPara2 = {
 //otp styling
 export const otpcontainer = {
   width: "606px",
-  height: "531px",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
   padding: 40,
   boxShadow: "0px 0px 4px rgba(0, 0, 0.25)",
-  margin: "auto",
+  margin: "0 auto",
   backgroundColor: "#ffffff",
   borderRadius: 8,
 };
@@ -211,7 +203,7 @@ export const otpHead = {
   gap: 100,
 };
 export const para = {
-  marginTop: "-600px",
+  // marginTop: "-600px",
   textAlign: "center",
   color: "#5a5a5a",
   width: "463px",
@@ -223,16 +215,14 @@ export const otpPara = {
   alignItems: "left",
   fontWeight: 400,
   fontSize: "16px",
-  lineHeight: "22px",
   color: "#071939",
 };
 export const mailparagraph = {
-  marginTop: "-500px",
+  // marginTop: "-500px",
   textAlign: "center",
   fontStyle: "normal",
   fontWeight: 700,
   fontSize: 32,
-  lineHeight: 40,
   color: "#000",
 };
 export const bottom = {

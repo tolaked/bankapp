@@ -31,7 +31,9 @@ import BankApp from "../../assets/BankApp.png";
 const Signup = () => {
   return (
     <div style={mainbody}>
-      <img src={BankApp} alt="logo" style={image} />
+      <div style={image}>
+        <img src={BankApp} alt="logo" />
+      </div>
       <div style={container}>
         <p style={paragraph}>
           Sign up for a <span style={span}>BankApp</span> account
@@ -62,7 +64,7 @@ const Signup = () => {
         </div>
         <div style={footer}>
           <p style={footerPara}>
-            Already have an account?
+            Already have an account? 
             <Link to="/login" style={login}>
               Log in
             </Link>
