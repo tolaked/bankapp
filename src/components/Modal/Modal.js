@@ -6,14 +6,17 @@ import { Link } from "react-router-dom";
 import {
   account,
   accountbox,
+  boxbeneficiary,
   boxBottom,
   boxhead,
+  boxname,
   cancelbtn,
+  code,
   iconStyle,
   modalbody,
-  modalContent,
   modalHeader,
   modalpara,
+  num,
   overlay,
   p,
   span,
@@ -21,6 +24,7 @@ import {
   walletBalance,
   walletbtn,
   walletchoice,
+  // walletFooter,
   walletinput,
   walletLink,
   walletText,
@@ -30,56 +34,56 @@ const Modal = () => {
   return (
     <div style={modalbody}>
       <div style={overlay}>
-        <div style={modalContent}>
-          <p style={modalHeader}>Fund Wallet</p>
+        <p style={modalHeader}>Fund Wallet</p>
+        <button style={cancelbtn}>
+          <GiCancel style={iconStyle} />
+        </button>
 
-          <div style={wallet}>
-            <p style={walletText}>wallet balance</p>
-            <p style={walletBalance}>$24,000,000</p>
-          </div>
+        <div style={wallet}>
+          <p style={walletText}>wallet balance</p>
+          <p style={walletBalance}>$24,000,000</p>
+        </div>
 
-          <div style={walletinput}>
-            <input type="checkbox" />
-            <label style={walletchoice}>Bank Transfer</label>
-            <input type="checkbox" />
-            <label style={walletchoice}>Fund by Card</label>
-          </div>
+        <div style={walletinput}>
+          <input type="checkbox" />
+          <label style={walletchoice}>Bank Transfer</label>
+          <input type="checkbox" />
+          <label style={walletchoice}>Fund by Card</label>
+        </div>
 
-          {/* <button style={cancelbtn}>
-            <GiCancel style={iconStyle} />
-          </button> */}
-
-          <div style={accountbox}>
-            <div style={boxhead}>
-              <div style={account}>
-                <p style={p}>Account Number</p>
-                <p>123456789</p>
-              </div>
-              <div>
-                <RxCopy />
-              </div>
-              <div style={account}>
-                <p style={p}>Sort Code</p>
-                <p>12-34-56</p>
-              </div>
+        <div style={accountbox}>
+          <div style={boxhead}>
+            <div style={account}>
+              <p style={p}>Account Number</p>
+              <p style={num}>123456789</p>
             </div>
-            <span style={span}></span>
-            <div style={boxBottom}>
-              <p>Beneficiary Name</p>
-              <p>John Doe</p>
+
+            <RxCopy />
+
+            <div style={code}>
+              <p style={p}>Sort Code</p>
+              <p style={num}>12-34-56</p>
             </div>
+          </div>
+          <span style={span}></span>
+          <div style={boxBottom}>
+            <p style={boxbeneficiary}>Beneficiary Name</p>
+            <p style={boxname}>John Doe</p>
           </div>
         </div>
+
+        {/* <div style={walletFooter}> */}
+          <p style={modalpara}>
+            To fund wallet via a bank transfer, pleaase copy the account number
+            above and send your funds to it
+          </p>
+          <button style={walletbtn}>
+            <Link to="/" style={walletLink}>
+              Done
+            </Link>
+          </button>
+        {/* </div> */}
       </div>
-      <p style={modalpara}>
-        To fund wallet via a bank transfet, pleaase copy the account number
-        above and send your funds to it
-      </p>
-      <button style={walletbtn}>
-        <Link to="/" style={walletLink}>
-          Done
-        </Link>
-      </button>
     </div>
   );
 };

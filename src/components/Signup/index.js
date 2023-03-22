@@ -40,7 +40,7 @@ const Signup = () => {
         </p>
         <div style={input}>
           <label style={inputTopic}>Email Address</label>
-          <input style={inputBox} required />
+          <input style={inputBox} isRequired />
           <button style={inputButton}>
             <Link to={"./Signupdetails"} style={buttonLink}>
               Sign up

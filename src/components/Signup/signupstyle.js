@@ -1,5 +1,7 @@
 export const mainbody = {
   backgroundColor: "#F5F5F5",
+  width: '100%',
+  height: '100%',
 };
 
 export const image = {
@@ -20,12 +22,10 @@ export const container = {
 };
 
 export const paragraph = {
-  // marginTop: "-300px",
   textAlign: "center",
   fontStyle: "normal",
   fontWeight: 700,
   fontSize: 32,
-  // lineHeight: 40,
   color: "#000",
 };
 
@@ -156,6 +156,8 @@ export const footer = {
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center", 
+  padding: 40
+  ,
 };
 
 export const footerPara = {
