@@ -1,6 +1,7 @@
-import React from "react";
-import { FcGoogle } from "react-icons/fc";
-import { DiApple } from "react-icons/di";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import { FcGoogle } from "react-icons/fc";
+// import { DiApple } from "react-icons/di";
 import { Link } from "react-router-dom";
 
 import {
@@ -29,8 +30,14 @@ import {
 import BankApp from "../../assets/BankApp.png";
 
 const Signup = () => {
+  // const {loading, userInfo, error, success} = useSelector((state) => state.auth);
+
+  const [email, setEmail] = useState("example@gmail.com");
+  const handleType = (e) => {
+    e.preventDefault(email);
+  };
   return (
-    <div style={mainbody}>
+    <div>
       <div style={image}>
         <img src={BankApp} alt="logo" />
       </div>
@@ -40,14 +47,18 @@ const Signup = () => {
         </p>
         <div style={input}>
           <label style={inputTopic}>Email Address</label>
-          <input style={inputBox} isRequired />
-          <button style={inputButton}>
+          <input
+            style={inputBox}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <button style={inputButton} onClick={handleType}>
             <Link to={"./Signupdetails"} style={buttonLink}>
               Sign up
             </Link>
           </button>
         </div>
-        <div style={otherOptions}>
+        {/* <div style={otherOptions}>
           <p style={Text}>or signup using</p>
           <button style={googleButton}>
             <FcGoogle style={googleIcon} />
@@ -61,10 +72,10 @@ const Signup = () => {
               Sign up with google
             </a>
           </button>
-        </div>
+        </div> */}
         <div style={footer}>
           <p style={footerPara}>
-            Already have an account? 
+            Already have an account?
             <Link to="/login" style={login}>
               Log in
             </Link>
