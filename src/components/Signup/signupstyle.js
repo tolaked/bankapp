@@ -1,7 +1,6 @@
 export const mainbody = {
   backgroundColor: "#F5F5F5",
-  width: '100%',
-  height: '100%',
+  height: '100vh',
 };
 
 export const image = {
@@ -39,6 +38,7 @@ export const detailscontainer = {
   backgroundColor: '#fff',
   boxShadow: '0px 0px 4px rgba(0, 0, 0.25)',
   margin: '0 auto',
+  border: 8,
 };
 export const detailsParagraph = {
   // marginTop: "-600px",

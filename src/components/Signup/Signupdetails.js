@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import {
   buttonLink,
@@ -12,15 +13,13 @@ import {
   inputButton,
   inputTopic,
   login,
-  mainbody,
   span,
 } from "./signupstyle";
-
 import BankApp from "../../assets/BankApp.png";
 
 const Signupdetails = () => {
   return (
-    <div style={mainbody}>
+    <div>
       <img src={BankApp} alt="logo" style={image} />
       <div style={detailscontainer}>
         <p style={detailsParagraph}>
@@ -28,7 +27,18 @@ const Signupdetails = () => {
         </p>
         <div style={input}>
           <label style={inputTopic}>What would you like us to call you *</label>
-          <input placeholder="Enter your name" type="text" style={inputBox} />
+          <input
+            placeholder="Enter your first name"
+            type="text"
+            style={inputBox}
+            required
+          />
+          <input
+            placeholder="Enter your last name"
+            type="text"
+            style={inputBox}
+            required
+          />
           <label style={inputTopic}>
             Set a password to secure your account
           </label>
@@ -36,9 +46,15 @@ const Signupdetails = () => {
             placeholder="Enter your password"
             type="password"
             style={inputBox}
+            required
           />
+          <label style={inputTopic}>Your Currency*</label>
+          <select name="currency" style={inputBox} required>
+            <options value="Dollars">Dollars</options>
+            <options value="Pounds">GBP</options>
+          </select>
           <button style={inputButton}>
-            <Link to={"/Mail"} style={buttonLink}>
+            <Link to={"/Dashboard"} style={buttonLink}>
               Continue
             </Link>
           </button>
