@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import {
   buttonLink,
@@ -29,6 +29,8 @@ const Index = () => {
     password: "",
     currency: "",
   };
+  const navigate = useNavigate();
+
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("Firstname is required!"),
     lastName: Yup.string().required("Firstname is required!"),
@@ -45,6 +47,7 @@ const Index = () => {
           .signup(values)
           .then((res) => {
             saveUser(res?.data, res?.data?.token);
+            navigate("/dashboard");
             cogoToast.success("Your account has been create successfully!!");
           })
           .catch((e) => {
