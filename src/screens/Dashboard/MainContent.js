@@ -12,12 +12,10 @@ const MainContent = () => {
     <div className="main-content">
       <div className="right-section">
         <TransactionsProvider>
-          <UsersProvider>
-            <TransferProvider>
-              <Overview />
-              <AccountHistory />
-            </TransferProvider>
-          </UsersProvider>
+          <TransferProvider>
+            <Overview />
+            <AccountHistory />
+          </TransferProvider>
         </TransactionsProvider>
       </div>
       <Account />

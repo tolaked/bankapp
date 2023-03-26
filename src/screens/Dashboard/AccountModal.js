@@ -2,14 +2,14 @@ import React from "react";
 import ModalLayout from "src/components/modal";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { CopyOutlined, CloseOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Input, MultiSelect } from "src/components/fields";
+import { CloseOutlined, CopyOutlined } from "@ant-design/icons";
+import { Button, Input, MultiSelect } from "src/components/fields";
 import { useUsersContext } from "src/contexts/UsersProvider";
 import { useAuthUser } from "src/hooks";
 import { formatNumber } from "src/utils";
-import { transferServices } from "src/services/transfer.service";
 import cogoToast from "cogo-toast";
 import { useTransactionsContext } from "src/contexts/TransactionsProvider";
+import { accountServices } from "src/services/account.service";
 
 function AccountModal({ user, setModal, modal, accountData, setAccountData }) {
   return (
@@ -34,26 +34,18 @@ function AccountModal({ user, setModal, modal, accountData, setAccountData }) {
 }
 export const AccountForm = ({ setModal, accountData, setAccountData }) => {
   const initialValues = {
-    election: "",
-    ward: "",
-    lga: "",
-    state: "",
     transfer_type: "",
-    location: "",
-    officer: "",
-    country: "NG",
+    balance: "",
+    description: "",
   };
 
   const { getUserByToken, user } = useUsersContext();
   const { user: authUser, token } = useAuthUser();
   const { getTransactions } = useTransactionsContext();
   const validationSchema = Yup.object().shape({
-    transfer_type: Yup.string().required(),
-    // application: Yup.string().notRequired(),
-    toAccountId: Yup.string().required("Account is required"),
-    amount: Yup.string().required("Amount is required"),
-    sortCode: Yup.string().required("Amount is required"),
-    description: Yup.string().required("Description is required"),
+    transfer_type: Yup.string().required("This field is required"),
+    balance: Yup.string().required("Amount is required"),
+    description: Yup.string().notRequired(),
   });
 
   return (
@@ -62,16 +54,20 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
       validationSchema={validationSchema}
       onSubmit={(values) => {
         console.log("values", values);
-        const { transfer_type, sortCode, ...others } = values;
-        transferServices
-          .createTransfer(others)
+        const { transfer_type, ...others } = values;
+        accountServices
+          .addMoney(others)
           .then((res) => {
             console.log("res", res);
             getTransactions();
+            getUserByToken(token);
+            setModal(false);
+            cogoToast.success("Account has been topped up successfully!!");
           })
           .catch((e) => {
             cogoToast.error(
-              e?.response?.data?.message || "Unable to complete at the moment!"
+              e?.response?.data?.message ||
+                "Unable to complete your transaction at the moment!"
             );
           });
       }}
@@ -116,15 +112,16 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
               {values?.transfer_type === "card" ? (
                 <>
                   <div className="col-span-2">
-                    <Input name="amount" label="Enter amount" />
+                    <Input name="balance" type="number" label="Enter amount" />
                   </div>{" "}
                   <div className="col-span-2">
                     <MultiSelect
-                      extraClasses="!w-full !md:grid-cols-1"
+                      checkboxClass={"w-full"}
+                      extraClasses="!w-full col-span-2 !justify-between"
                       multiple={false}
                       format={() => {
                         return (
-                          <div className="grid grid-cols-6  ">
+                          <div className="grid grid-cols-6 w-full ">
                             <div className="col-span-1">
                               <div className="bg-primary ring-primary rounded-full w-5 h-5" />
                             </div>
