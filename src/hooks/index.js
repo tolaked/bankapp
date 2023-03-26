@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import { storageService } from "src/services/storage.service";
 import ApiService from "src/services";
 import { useNavigate } from "react-router-dom";
+import { useUsersContext } from "src/contexts/UsersProvider";
 
 export function useDebounce(value, delay) {
   // State and setters for debounced value
@@ -149,8 +150,14 @@ export const useAuthorization = () => {
   return null;
 };
 export const useAuthUser = () => {
-  const user = JSON.parse(storageService.getItem("user"));
+  const localUser = JSON.parse(storageService.getItem("user"));
   const token = storageService.getItem("token");
 
-  return { user, token };
+  const { getUserByToken, user } = useUsersContext();
+
+  useEffect(() => {
+    getUserByToken(token);
+  }, [token]);
+
+  return { user: user || localUser, token };
 };

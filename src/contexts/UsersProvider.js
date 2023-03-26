@@ -15,7 +15,7 @@ function UsersProvider({ children }) {
       .then((res) => {
         setLoading(false);
         console.log("res", res);
-        setUser(res);
+        setUser({ claim: res?.data });
         saveUser(res);
         onComplete && onComplete(res);
       })

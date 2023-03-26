@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { BellFilled, MailFilled, SearchOutlined } from "@ant-design/icons";
+import { BellFilled, MailFilled } from "@ant-design/icons";
 import { useAuthUser } from "src/hooks";
-import { Form, Formik } from "formik";
-import { Input } from "src/components/fields";
 
 function TopHeader() {
   const { user } = useAuthUser();
-
+  console.log("user in header", user);
   return (
     <HeadContainer className="top-header drop-shadow-md z-10">
       <div className="">
