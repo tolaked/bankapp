@@ -156,7 +156,7 @@ export const useAuthUser = () => {
   const { getUserByToken, user } = useUsersContext();
 
   useEffect(() => {
-    getUserByToken(token);
+    getUserByToken(localUser?.id);
   }, [token]);
 
   return { user: user || localUser, token };

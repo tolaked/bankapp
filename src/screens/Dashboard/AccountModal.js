@@ -39,8 +39,8 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
     description: "",
   };
 
-  const { getUserByToken, user } = useUsersContext();
-  const { user: authUser, token } = useAuthUser();
+  const { getUserByToken } = useUsersContext();
+  const { user: authUser } = useAuthUser();
   const { getTransactions } = useTransactionsContext();
   const validationSchema = Yup.object().shape({
     transfer_type: Yup.string().required("This field is required"),
@@ -60,7 +60,7 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
           .then((res) => {
             console.log("res", res);
             getTransactions();
-            getUserByToken(token);
+            getUserByToken(authUser?.id);
             setModal(false);
             cogoToast.success("Account has been topped up successfully!!");
           })
@@ -125,13 +125,13 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
                             <div className="col-span-1">
                               <div className="bg-primary ring-primary rounded-full w-5 h-5" />
                             </div>
-                            <div className="col-span-3">
+                            <div className="col-span-4">
                               <p>**** **** **** 0654</p>
                               <p className="text-gray-400 uppercase">
                                 Expire Date
                               </p>
                             </div>
-                            <div className="col-span-2">
+                            <div className="col-span-1">
                               <h2 className="text-bold text-2xl">03/24</h2>
                               <p className="text-gray-400">Expire Date</p>
                             </div>
@@ -145,7 +145,7 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
                     />
                   </div>
                   <div className="col-span-2">
-                    <Input name="description" />
+                    <Input name="description" label="Description" />
                   </div>
                 </>
               ) : (
