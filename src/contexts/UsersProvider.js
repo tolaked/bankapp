@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { usersServices } from "src/services/users.service";
+import { saveUser } from "src/utils";
 
 const PositionContext = createContext();
 const Provider = PositionContext.Provider;
@@ -15,6 +16,7 @@ function UsersProvider({ children }) {
         setLoading(false);
         console.log("res", res);
         setUser(res);
+        saveUser(res);
         onComplete && onComplete(res);
       })
       .catch((e) => {

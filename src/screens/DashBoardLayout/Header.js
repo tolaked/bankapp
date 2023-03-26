@@ -9,35 +9,23 @@ function TopHeader() {
   const { user } = useAuthUser();
 
   return (
-    <Formik>
-      {() => {
-        return (
-          <Form>
-            <HeadContainer className="top-header drop-shadow-md z-10">
-              <div className="">
-                <p className="font-bold text-primary text-2xl">
-                  Hello {user?.claim?.firstName}
-                </p>
-                <span className="text-gray-400 text-sm">
-                  Glad to see you again
-                </span>
-              </div>
-              <div>
-                <Input rightIcon={<SearchOutlined />} name="search" />
-              </div>
-              <div className="flex space-x-2 ">
-                <div className=" bg-gray-100  cursor-pointer rounded">
-                  <MailFilled className="bell text-primary w-14 mb-2" />
-                </div>{" "}
-                <div className=" bg-gray-100  cursor-pointer rounded">
-                  <BellFilled className="bell text-primary w-14 mb-2" />
-                </div>
-              </div>
-            </HeadContainer>
-          </Form>
-        );
-      }}
-    </Formik>
+    <HeadContainer className="top-header drop-shadow-md z-10">
+      <div className="">
+        <p className="font-bold text-primary text-2xl">
+          Hello {user?.claim?.firstName}
+        </p>
+        <span className="text-gray-400 text-sm">Glad to see you again</span>
+      </div>
+
+      <div className="flex space-x-2 ">
+        <div className=" bg-gray-100  cursor-pointer rounded">
+          <MailFilled className="bell text-primary w-14 mb-2" />
+        </div>{" "}
+        <div className=" bg-gray-100  cursor-pointer rounded">
+          <BellFilled className="bell text-primary w-14 mb-2" />
+        </div>
+      </div>
+    </HeadContainer>
   );
 }
 

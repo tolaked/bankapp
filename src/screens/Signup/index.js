@@ -60,7 +60,7 @@ const Index = () => {
       {() => {
         return (
           <Form>
-            <div className="py-4">
+            <div className="p-4">
               <img
                 src={BankApp}
                 alt="logo"
@@ -69,10 +69,11 @@ const Index = () => {
               />
               <div
                 // style={detailscontainer}
-                className="max-w-lg m-auto my-5"
+                className="max-w-lg m-auto mt-10 shadow shadow-gray-300 p-8"
               >
                 <p
-                // style={detailsParagraph}
+                  className="font-bold text-2xl"
+                  // style={detailsParagraph}
                 >
                   Welcome to your{" "}
                   <span
@@ -148,10 +149,12 @@ const Index = () => {
                   {/*</button>*/}
                 </div>
                 <p
-                // style={footerPara}
+                  className="text-center text-gray-500"
+                  // style={footerPara}
                 >
                   Already have an account?
                   <Link
+                    className="text-primary ml-2"
                     to={"/login"}
                     // style={login}
                   >
