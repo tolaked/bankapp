@@ -1,5 +1,5 @@
-import {ErrorMessage, Field} from "formik";
-import React, {useEffect, useState} from "react";
+import { ErrorMessage, Field } from "formik";
+import React, { useEffect, useState } from "react";
 import OtpInput from "react-otp-input";
 
 export default function Component({
@@ -42,7 +42,8 @@ export default function Component({
                 {label ? (
                   <label
                     htmlFor={name}
-                    className=" tracking-wider text-sm text-gray-900">
+                    className=" tracking-wider text-sm text-gray-900"
+                  >
                     {label}
                   </label>
                 ) : (
@@ -51,6 +52,8 @@ export default function Component({
                 {altLink && <span className="items-end">{altLink}</span>}
               </div>
             )}
+            {helpText && <p className="text-xs text-gray-400">{helpText}</p>}
+
             <div className="relative">
               <OtpInput
                 value={formatValue(value)}
@@ -76,7 +79,6 @@ export default function Component({
               {/*  )}*/}
               {/*/>*/}
             </div>
-            {helpText && <p className="text-xs text-gray-400">{helpText}</p>}
             {showError && (
               <ErrorMessage name={name}>
                 {(msg) => (

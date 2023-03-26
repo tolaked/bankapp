@@ -48,19 +48,30 @@ function Login() {
             <div className="p-4">
               <img src={BankApp} alt="logo" />
             </div>
-            <div className="max-w-lg m-auto my-5 shadow-lg p-10">
-              <p className="">Login</p>
-              <div>
-                <Input type="email" name="emailAddress" />
-                <Password name="password" />
+            <div className="max-w-xl m-auto mt-16 shadow shadow-gray-300 p-16">
+              <h1 className="font-bold text-2xl">
+                Welcome to your{" "}
+                <strong className="text-primary ">BankApp</strong> account
+              </h1>
+              <div className="space-y-3">
+                <Input type="email" label="Email Address" name="emailAddress" />
+                <Password name="password" label="Password" />
                 {/*<input placeholder="Email" type="text" style={inputbox} />*/}
                 {/*<input placeholder="Password" type="password" style={inputbox} />*/}
-                <Button type="submit" disabled={!(isValid || isSubmitting)}>
+                <Button
+                  type="submit"
+                  extraClasses="!rounded"
+                  disabled={!(isValid || isSubmitting)}
+                >
                   Login
                 </Button>
               </div>
-              <p>
-                Don't have an account? <Link to="/"> Register here</Link>
+              <p className="my-3 text-center text-gray-500">
+                Don't have an account?{" "}
+                <Link to="/signup" className="text-primary">
+                  {" "}
+                  Register here
+                </Link>
               </p>
             </div>
           </Form>

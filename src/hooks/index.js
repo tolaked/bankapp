@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { storageService } from "src/services/storage.service";
 import ApiService from "src/services";
+import { useNavigate } from "react-router-dom";
 
 export function useDebounce(value, delay) {
   // State and setters for debounced value
@@ -136,11 +137,20 @@ export const useAuthorization = () => {
     console.log("token", token);
     ApiService.setHeader(token);
   }
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login");
+    }
+  }, [token]);
 
   return null;
 };
 export const useAuthUser = () => {
   const user = JSON.parse(storageService.getItem("user"));
+  const token = storageService.getItem("token");
 
-  return { user };
+  return { user, token };
 };

@@ -1,15 +1,13 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Signup from "src/screens/Signup";
 import Dashboard from "./screens/Dashboard";
 import Login from "./screens/Login";
-import { useEffect } from "react";
-import ApiService from "src/services";
 import { useAuthorization } from "src/hooks";
+import { useEffect } from "react";
 
 function App() {
   useAuthorization();
-  // useEffect(() => {
-  // }, []);
+
   return (
     <Routes>
       {/*<Route path="/" element={<Signup />} />*/}

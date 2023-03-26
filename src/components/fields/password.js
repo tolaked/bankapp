@@ -1,7 +1,8 @@
-import {ErrorMessage, Field} from "formik";
-import {classNames} from "src/utils";
-import React, {useEffect, useState} from "react";
-import {useToggle} from "src/hooks";
+import { ErrorMessage, Field } from "formik";
+import { classNames } from "src/utils";
+import React, { useEffect, useState } from "react";
+import { useToggle } from "src/hooks";
+import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
 
 export default function Component({
   name,
@@ -39,7 +40,8 @@ export default function Component({
                 {label ? (
                   <label
                     htmlFor={name}
-                    className=" tracking-wider text-sm text-gray-900">
+                    className=" tracking-wider text-sm text-gray-900"
+                  >
                     {label}
                   </label>
                 ) : (
@@ -74,14 +76,16 @@ export default function Component({
                 {open ? (
                   <span
                     className=" text-gray-600 cursor-pointer"
-                    onClick={toggle}>
-                    hide
+                    onClick={toggle}
+                  >
+                    <EyeOutlined />
                   </span>
                 ) : (
                   <span
                     className=" text-gray-600 cursor-pointer"
-                    onClick={toggle}>
-                    show
+                    onClick={toggle}
+                  >
+                    <EyeInvisibleOutlined />
                   </span>
                 )}
                 {/* {open ? (

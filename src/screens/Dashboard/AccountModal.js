@@ -7,6 +7,9 @@ import { Button, Checkbox, Input, MultiSelect } from "src/components/fields";
 import { useUsersContext } from "src/contexts/UsersProvider";
 import { useAuthUser } from "src/hooks";
 import { formatNumber } from "src/utils";
+import { transferServices } from "src/services/transfer.service";
+import cogoToast from "cogo-toast";
+import { useTransactionsContext } from "src/contexts/TransactionsProvider";
 
 function AccountModal({ user, setModal, modal, accountData, setAccountData }) {
   return (
@@ -42,12 +45,14 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
   };
 
   const { getUserByToken, user } = useUsersContext();
-  const { user: authUser } = useAuthUser();
+  const { user: authUser, token } = useAuthUser();
+  const { getTransactions } = useTransactionsContext();
   const validationSchema = Yup.object().shape({
     transfer_type: Yup.string().required(),
     // application: Yup.string().notRequired(),
     toAccountId: Yup.string().required("Account is required"),
     amount: Yup.string().required("Amount is required"),
+    sortCode: Yup.string().required("Amount is required"),
     description: Yup.string().required("Description is required"),
   });
 
@@ -57,7 +62,18 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
       validationSchema={validationSchema}
       onSubmit={(values) => {
         console.log("values", values);
-        const { transfer_type } = values;
+        const { transfer_type, sortCode, ...others } = values;
+        transferServices
+          .createTransfer(others)
+          .then((res) => {
+            console.log("res", res);
+            getTransactions();
+          })
+          .catch((e) => {
+            cogoToast.error(
+              e?.response?.data?.message || "Unable to complete at the moment!"
+            );
+          });
       }}
     >
       {({ values, errors }) => {
@@ -76,24 +92,24 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
             {/*<hr className="-mx-5" />*/}
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
-                <div className="space-x-3 ">
-                  <label className="text-sm   font-medium text-gray-900">
+                <div className="space-x-3 flex  ">
+                  <label className="text-sm flex justify-start  font-medium text-gray-900">
                     <Field
                       className="w-4 h-4 text-primary border-gray-200  focus:ring-primary"
                       type="radio"
                       name="transfer_type"
                       value="account"
                     />
-                    Bank Transfer
+                    <span className="ml-2">Bank Transfer</span>
                   </label>
-                  <label className="text-sm   font-medium text-gray-900">
+                  <label className="text-sm flex  justify-start   font-medium text-gray-900">
                     <Field
-                      className="w-4 h-4 text-primary border-gray-200 rounded focus:ring-primary"
+                      className="w-4 h-4 bg-primary border-gray-200  "
                       type="radio"
                       name="transfer_type"
                       value="card"
                     />
-                    Fund by Card
+                    <span className="ml-2">Fund by Card</span>
                   </label>
                 </div>
               </div>
