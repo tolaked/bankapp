@@ -80,6 +80,7 @@ export const TransferForm = ({
             cogoToast.success("Transaction was successful!");
             getTransactions();
             setStep("three");
+            setModal(false);
           })
           .catch((e) => {
             cogoToast.error(
@@ -195,7 +196,7 @@ export const TransferForm = ({
                             )}
                           </p>
                         </div>
-                        <div className={"space-y-1"}>
+                        <div className={"space-y-1 text-right"}>
                           <div>Sort Code</div>
                           <p className="text-gray-500">
                             {_.compact([values?.sortCode]).join(" ")}
@@ -212,7 +213,7 @@ export const TransferForm = ({
                             ]).join(" ")}
                           </p>
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-1 text-right">
                           <div>Account Number </div>
                           <p className="text-gray-500">
                             {_.compact([values?.toAccountId]).join(" ")}

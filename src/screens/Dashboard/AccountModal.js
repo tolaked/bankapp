@@ -60,7 +60,7 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
           .then((res) => {
             console.log("res", res);
             getTransactions();
-            getUserByToken(authUser?.id);
+            getUserByToken(authUser?.claim?.id);
             setModal(false);
             cogoToast.success("Account has been topped up successfully!!");
           })
@@ -84,7 +84,7 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
             <h2 className=" text-primary font-bold text-3xl">
               ${formatNumber(authUser?.claim?.account[0]?.balance, "0,0.00")}
             </h2>{" "}
-            <div className="w-20 border-b border-gray-400 my-4"></div>
+            <div className="w-20 border-b border-gray-300 my-4"></div>
             {/*<hr className="-mx-5" />*/}
             <div className="grid grid-cols-2 gap-3">
               <div className="col-span-2">
@@ -121,19 +121,23 @@ export const AccountForm = ({ setModal, accountData, setAccountData }) => {
                       multiple={false}
                       format={() => {
                         return (
-                          <div className="grid grid-cols-6 w-full ">
+                          <div className="grid grid-cols-6 w-full items-center ">
                             <div className="col-span-1">
                               <div className="bg-primary ring-primary rounded-full w-5 h-5" />
                             </div>
-                            <div className="col-span-4">
-                              <p>**** **** **** 0654</p>
-                              <p className="text-gray-400 uppercase">
-                                Expire Date
+                            <div className="col-span-4 ">
+                              <p className="text-2xl text-bold">
+                                **** **** **** 0654
+                              </p>
+                              <p className="text-gray-400 text-xs uppercase">
+                                Card Number
                               </p>
                             </div>
                             <div className="col-span-1">
                               <h2 className="text-bold text-2xl">03/24</h2>
-                              <p className="text-gray-400">Expire Date</p>
+                              <p className="text-gray-400 text-xs">
+                                Expire Date
+                              </p>
                             </div>
                           </div>
                         );
