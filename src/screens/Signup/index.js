@@ -21,6 +21,7 @@ import * as Yup from "yup";
 import authService from "src/services/auth.service";
 import cogoToast from "cogo-toast";
 import { saveUser } from "src/utils";
+import routeService from "src/services/route.service";
 const Index = () => {
   const initialValues = {
     firstName: "",
@@ -47,7 +48,7 @@ const Index = () => {
           .signup(values)
           .then((res) => {
             saveUser(res?.data, res?.data?.token);
-            navigate("/dashboard");
+            navigate(routeService.dashboard);
             cogoToast.success("Your account has been create successfully!!");
           })
           .catch((e) => {

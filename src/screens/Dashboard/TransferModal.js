@@ -44,21 +44,22 @@ export const TransferForm = ({
   transferData,
   setTransferData,
 }) => {
+  const { user } = useAuthUser();
+
   const initialValues = {
     sortCode: "",
     toAccountId: "",
     amount: "",
     description: "",
-    pin: "",
-    currency: "USD",
+    // pin: "",
+    currency: user?.claim?.account?.[0]?.currency || "USD",
   };
 
-  const { user } = useAuthUser();
   const [steps, setStep] = useState("one");
   const { getTransactions } = useTransactionsContext();
   const validationSchema = Yup.object().shape({
     sortCode: Yup.string().notRequired("Sort code is required"),
-    pin: Yup.string().required("Pin is required"),
+    // pin: Yup.string().required("Pin is required"),
     toAccountId: Yup.string().required("Account is required"),
     amount: Yup.string().required("Amount is required"),
     currency: Yup.string().required("Currency is required"),
@@ -79,6 +80,7 @@ export const TransferForm = ({
             cogoToast.success("Transaction was successful!");
             getTransactions();
             setStep("three");
+            setModal(false);
           })
           .catch((e) => {
             cogoToast.error(
@@ -189,21 +191,15 @@ export const TransferForm = ({
                         <div className={"space-y-1"}>
                           <div>Amount</div>
                           <p className="text-gray-500">
-                            {_.compact([
-                              user?.claim?.account?.[0]?.currency,
-                              formatNumber(
-                                user?.claim?.account?.[0]?.balance,
-                                "0,0.00"
-                              ),
-                            ]).join(" ")}
+                            {_.compact([values?.currency, values?.amount]).join(
+                              " "
+                            )}
                           </p>
                         </div>
-                        <div className={"space-y-1"}>
+                        <div className={"space-y-1 text-right"}>
                           <div>Sort Code</div>
                           <p className="text-gray-500">
-                            {_.compact([
-                              user?.claim?.account?.[0]?.sortCode,
-                            ]).join(" ")}
+                            {_.compact([values?.sortCode]).join(" ")}
                           </p>
                         </div>
                       </div>
@@ -217,12 +213,10 @@ export const TransferForm = ({
                             ]).join(" ")}
                           </p>
                         </div>
-                        <div className="space-y-1">
+                        <div className="space-y-1 text-right">
                           <div>Account Number </div>
                           <p className="text-gray-500">
-                            {_.compact([
-                              user?.claim?.account?.[0]?.accountNumber,
-                            ]).join(" ")}
+                            {_.compact([values?.toAccountId]).join(" ")}
                           </p>
                         </div>
                       </div>
@@ -236,19 +230,19 @@ export const TransferForm = ({
                   </div>{" "}
                 </div>
                 <div className="mt-4">
-                  <p className="text-gray-500 text-center mt-6 mb-4 w-full">
-                    Confirm the details before proceeding
-                  </p>
-                  <div className="flex w-full my-4">
-                    <PinInput
-                      label="Transaction Pin"
-                      helpText="Provide 4 digit pin"
-                      extraClasses={""}
-                      className="p-2 border border-gray-200 !w-10 mr-4 rounded text-gray-800"
-                      numInputs={4}
-                      name="pin"
-                    />
-                  </div>
+                  {/*<p className="text-gray-500 text-center mt-6 mb-4 w-full">*/}
+                  {/*  Confirm the details before proceeding*/}
+                  {/*</p>*/}
+                  {/*<div className="flex w-full my-4">*/}
+                  {/*  <PinInput*/}
+                  {/*    label="Transaction Pin"*/}
+                  {/*    helpText="Provide 4 digit pin"*/}
+                  {/*    extraClasses={""}*/}
+                  {/*    className="p-2 border border-gray-200 !w-10 mr-4 rounded text-gray-800"*/}
+                  {/*    numInputs={4}*/}
+                  {/*    name="pin"*/}
+                  {/*  />*/}
+                  {/*</div>*/}
                   <div className="flex w-full">
                     <Button
                       className="text-sm text-white p-2 px-3 bg-primary w-full rounded"
