@@ -46,9 +46,8 @@ const Index = () => {
       onSubmit={(values) => {
         authService
           .signup(values)
-          .then((res) => {
-            saveUser(res?.data, res?.data?.token);
-            navigate(routeService.dashboard);
+          .then(() => {
+            navigate(routeService.login);
             cogoToast.success("Your account has been create successfully!!");
           })
           .catch((e) => {
